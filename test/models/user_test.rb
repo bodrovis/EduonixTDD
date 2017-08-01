@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe User do
-  subject { User.new(email: 'test@example.com', name: 'Some Name') }
+  subject { users(:john) }
 
   it 'is not valid without an email' do
     subject.email = nil
@@ -20,7 +20,7 @@ end
 
 # class UserTest < ActiveSupport::TestCase
 #   def setup
-#     @user = User.new(email: 'test@example.com', name: 'Some Name')
+#     @user = users(:john)
 #   end
 #
 #   test 'is not valid without an email' do
