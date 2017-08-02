@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     if @user.present? && @user.authenticate(params[:password])
-      flash[:success] = 'Welcome!'
       cookies.signed[:user_id] = @user.id
+      flash[:success] = 'Welcome!'
       redirect_to root_path
     else
       flash.now[:danger] = 'Incorrect email and/or password!'

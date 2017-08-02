@@ -2,6 +2,8 @@
 
 one:
   user: user_1
+  category: one
 
 two:
   user: user_2
+  category: two
