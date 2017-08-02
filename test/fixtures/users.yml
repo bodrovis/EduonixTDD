@@ -4,4 +4,5 @@
 user_<%= i %>:
   name: <%= Faker::Name.name %>
   email: <%= Faker::Internet.email %>
+  password_digest: <%= BCrypt::Password.create('secret') %>
 <% end %>
