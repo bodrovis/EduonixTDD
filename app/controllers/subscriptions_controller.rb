@@ -2,6 +2,8 @@ class SubscriptionsController < ApplicationController
   before_action :require_authentication!
 
   def new
+    @subscriptions = Subscription.all
+    @subscription = current_user.subscriptions.build
   end
 
   def create

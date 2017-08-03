@@ -9,14 +9,16 @@ describe "Registration Integration Test" do
     get new_user_path
     assert_response :success
     assert_select 'h1', 'Registration'
-    post users_url, params: {
-        user: {
-            email: 'john@example.com',
-            name: 'John Doe',
-            password: 'supersecret',
-            password_confirmation: 'supersecret'
-        }
-    }
+    assert_difference 'User.count', +1 do
+      post users_url, params: {
+          user: {
+              email: 'john@example.com',
+              name: 'John Doe',
+              password: 'supersecret',
+              password_confirmation: 'supersecret'
+          }
+      }
+    end
 
     assert_redirected_to root_url
     follow_redirect!

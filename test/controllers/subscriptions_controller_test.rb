@@ -10,7 +10,7 @@ describe SubscriptionsController do
       assert_difference 'user.subscriptions.count', +1 do
         post subscriptions_url, params: {
             subscription: {
-                category: 'test'
+                category: 'java'
             }
         }
       end
