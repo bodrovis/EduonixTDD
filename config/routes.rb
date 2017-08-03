@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :subscriptions, only: [:new, :create]
 
-  resources :sessions, only: [:new, :create]
+  resource :sessions, only: [:new, :create, :destroy]
 
   root 'subscriptions#new'
 

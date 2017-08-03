@@ -1,5 +1,12 @@
 class SessionsController < ApplicationController
-  before_action :require_no_authentication!
+  before_action :require_no_authentication!, except: [:destroy]
+  before_action :require_authentication!, only: [:destroy]
+
+  def destroy
+    cookies.signed[:user_id] = nil
+    flash[:success] = 'See you later!'
+    redirect_to new_sessions_path
+  end
 
   def new
   end

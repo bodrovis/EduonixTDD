@@ -8,7 +8,7 @@ describe SessionsController do
 
   describe '#new' do
     it "should get new" do
-      get new_session_url
+      get new_sessions_url
       assert_response :success
     end
   end

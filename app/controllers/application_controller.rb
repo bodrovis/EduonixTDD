@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def require_authentication!
     unless current_user
       flash[:danger] = 'Please log in!'
-      redirect_to new_session_path
+      redirect_to new_sessions_path
     end
   end
 
