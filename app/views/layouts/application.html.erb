@@ -9,6 +9,17 @@
 </head>
 
 <body>
+
+<div class="main-menu">
+  <% if current_user %>
+    <ul>
+      <li>Logged in as <span class="user-email"><%= current_user.email %></span></li>
+      <li><%= link_to 'Logout', sessions_path,
+                      class: 'logout', data: {method: :delete} %></li>
+    </ul>
+  <% end %>
+</div>
+
 <% flash.each do |k, v| %>
   <%= tag.div v, class: "alert alert-#{k}" %>
 <% end %>
