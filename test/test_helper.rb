@@ -11,6 +11,8 @@ require 'capybara/poltergeist'
 # Uncomment for awesome colorful output
 #require "minitest/pride"
 
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
