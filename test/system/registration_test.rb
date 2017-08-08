@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class RegistrationTest < ApplicationSystemTestCase
+  def setup
+    my_cookies = ActionDispatch::Request.new(Rails.application.env_config).cookie_jar
+    my_cookies.signed[:user_id] = nil
+  end
   test "registration should succeed with proper user data" do
     visit new_user_url
 
@@ -15,8 +19,7 @@ class RegistrationTest < ApplicationSystemTestCase
         fill_in 'user[password_confirmation]', with: 'secret'
         click_button 'Register!'
       end
+      assert page.has_css?('.alert.alert-success', text: 'Welcome!')
     end
-
-    assert page.has_css?('.alert.alert-success', text: 'Welcome!')
   end
 end
