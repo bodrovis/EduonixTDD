@@ -1,9 +1,9 @@
 <h1>Registration</h1>
 
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user, id: 'new_user' do |f| %>
   <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, id: :user_name %>
   </div>
 
   <div>
