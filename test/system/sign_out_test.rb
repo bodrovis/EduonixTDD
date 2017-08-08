@@ -8,11 +8,13 @@ class SignOutTest < ApplicationSystemTestCase
   end
 
   it 'should sign the user out' do
-    visit root_url
-    within '.main-menu' do
-      click_link 'Logout'
+    VCR.use_cassette("currency_rates") do
+      visit root_url
+      within '.main-menu' do
+        click_link 'Logout'
+      end
+      assert page.has_css?('.alert.alert-success', text: 'See you later!')
+      assert page.has_css?('h1', text: 'Log In')
     end
-    assert page.has_css?('.alert.alert-success', text: 'See you later!')
-    assert page.has_css?('h1', text: 'Log In')
   end
 end

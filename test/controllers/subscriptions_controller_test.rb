@@ -30,7 +30,9 @@ describe SubscriptionsController do
 
     it 'should allow authenticated user to access the page' do
       my_cookies.signed[:user_id] = user.id
-      get new_subscription_path
+      VCR.use_cassette("currency_rates") do
+        get new_subscription_path
+      end
       assert_response :success
     end
   end

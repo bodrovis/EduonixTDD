@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   def new
     @subscriptions = current_user.subscriptions.all
     @subscription = current_user.subscriptions.build
+    @currency_rates = CurrencyRate.new
   end
 
   def create

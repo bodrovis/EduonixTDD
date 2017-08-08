@@ -20,18 +20,20 @@ describe "Authentication Integration Test" do
   describe 'Unauthenticated user' do
     before(:all) { my_cookies.signed[:user_id] = nil }
     it "should be able to log in with valid credentials" do
-      get root_url
-      assert_response :redirect
-      #assert_redirected_to ...
-      follow_redirect!
-      assert_select 'h1', 'Log In'
-      post sessions_url, params: {
-          email: subject.email,
-          password: 'secret'
-      }
-      assert_response :redirect
-      follow_redirect!
-      assert_select 'h1', 'Subscriptions'
+      VCR.use_cassette("currency_rates") do
+        get root_url
+        assert_response :redirect
+        #assert_redirected_to ...
+        follow_redirect!
+        assert_select 'h1', 'Log In'
+        post sessions_url, params: {
+            email: subject.email,
+            password: 'secret'
+        }
+        assert_response :redirect
+        follow_redirect!
+        assert_select 'h1', 'Subscriptions'
+      end
     end
 
     it "should not be able to log in with invalid credentials" do
